@@ -1,0 +1,264 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FAF8F5;
+    color: #3F3F3F;
+    line-height: 1.7;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Container */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ====================== NAVBAR ====================== */
+.navbar {
+    background-color: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #E5E0D8;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+.logo h2 {
+    color: #2C2C2C;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #4A4A4A;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #8B5A2B; /* Warna coklat keemasan Islami */
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #4A4A4A;
+}
+
+/* ====================== HERO ====================== */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), 
+                url('https://source.unsplash.com/random/1600x900/?islamic-school,mosque') center/cover no-repeat;
+    padding: 140px 0 100px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+/* ====================== SECTIONS ====================== */
+.intro, .services, .announcements, .extra {
+    padding: 70px 0;
+}
+
+h2, h3 {
+    color: #2C2C2C;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.55rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Card */
+.card {
+    background: #FFFFFF;
+    padding: 32px 28px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    border: 1px solid #F0EDE6;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(139, 90, 43, 0.1);
+}
+
+.icon {
+    font-size: 2.8rem;
+    margin-bottom: 18px;
+    display: block;
+}
+
+.card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: #2C2C2C;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #8B5A2B;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background-color: #6F4620;
+    transform: translateY(-2px);
+}
+
+/* Announcement */
+.announcement-list {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.announcement-list li {
+    padding: 18px 24px;
+    border-bottom: 1px solid #F4F1EB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.announcement-list li:last-child {
+    border-bottom: none;
+}
+
+.announcement-list .date {
+    font-size: 0.85rem;
+    color: #8B5A2B;
+    font-weight: 500;
+}
+
+/* Card Small */
+.card-small {
+    background: #F8F4ED;
+    padding: 24px;
+    border-radius: 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #5C4633;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.card-small:hover {
+    background: #EDE4D4;
+    transform: scale(1.03);
+}
+
+/* Footer */
+footer {
+    background-color: #2C2C2C;
+    color: #CCC;
+    padding: 50px 0 30px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+footer a {
+    color: #CCC;
+    text-decoration: none;
+}
+
+.social-icons a {
+    margin: 0 12px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #E0C090;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #FAF8F5;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hero {
+        padding: 100px 0 80px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.4rem;
+    }
+}
