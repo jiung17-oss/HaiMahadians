@@ -154,4 +154,15 @@ footer {
     .hero-content h1 {
         font-size: 2.6rem;
     }
+}/* Perbaikan celah & spacing setelah ganti tema */
+.intro, .services, .announcements, .extra {
+    padding: 70px 0;   /* kurangi sedikit kalau terlalu longgar */
+}
+
+.card {
+    padding: 28px 24px;   /* sedikit lebih kecil biar tidak terlalu besar */
+}
+
+.announcement-list li {
+    padding: 16px 24px;
 }
