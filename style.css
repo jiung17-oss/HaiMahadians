@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0F2A24;
+    color: #E8EDE9;
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: rgba(15, 42, 36, 0.98);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #2E5A4A;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+}
+
+.logo h2 {
+    color: #F4E17C;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: #E8EDE9;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-menu a:hover {
+    color: #F4E17C;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: #E8EDE9;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(15, 42, 36, 0.65), rgba(15, 42, 36, 0.75)), 
+                url('https://source.unsplash.com/random/1600x900/?madrasah,mosque') center/cover no-repeat;
+    padding: 160px 0 130px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.4rem;
+    color: #F4E17C;
+    margin-bottom: 16px;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    max-width: 680px;
+    margin: 0 auto 35px;
+}
+
+/* SECTIONS */
+section {
+    padding: 80px 0;
+}
+
+h2, h3 {
+    color: #F4E17C;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+}
+
+/* CARD UTAMA */
+.card {
+    background-color: #1F4A40;
+    padding: 32px 28px;
+    border-radius: 20px;
+    border: 1px solid #2E5A4A;
+    transition: all 0.4s ease;
+}
+
+.card-header {
+    transition: all 0.3s ease;
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.card h4 {
+    color: #F4E17C;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #C0D4CE;
+    margin-bottom: 20px;
+}
+
+/* SUB SERVICES */
+.sub-services {
+    display: none;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px dashed #2E5A4A;
+}
+
+.sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.sub-card {
+    background: #2E5A4A;
+    padding: 20px 15px;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.sub-card:hover {
+    transform: translateY(-5px);
+    background: #3A6B5A;
+}
+
+.sub-icon {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.sub-card h5 {
+    color: #F4E17C;
+    margin-bottom: 14px;
+    font-size: 0.98rem;
+}
+
+/* Tombol */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: #F4E17C;
+    color: #0F2A24;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #FFEA9E;
+}
+
+.btn-small {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    background-color: #F4E17C;
+    color: #0F2A24;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Active State */
+.card.active .sub-services {
+    display: block;
+}
+
+.card.active .card-header {
+    opacity: 0.85;
+}
+
+/* Footer */
+footer {
+    background-color: #0A1F1B;
+    padding: 60px 0 40px;
+    text-align: center;
+    color: #A8B9B4;
+    margin-top: 40px;
+}
+
+.social-icons a {
+    color: #A8B9B4;
+    margin: 0 15px;
+}
+
+.social-icons a:hover {
+    color: #F4E17C;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0F2A24;
+        padding: 25px 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hero {
+        padding: 120px 0 100px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.6rem;
+    }
+}

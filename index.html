@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Informasi Mahadian’s</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h2>Mahadian’s</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#pengumuman">Pengumuman</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Hai, Mahadian’s! 👋</h1>
+            <p class="subtitle">Pusat informasi resmi Ma’had untuk seluruh pelajar</p>
+            <a href="#services" class="btn">Jelajahi Sekarang</a>
+        </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="intro container">
+        <h2>Selamat datang di Pusat Informasi Mahadian’s</h2>
+        <p>Temukan berbagai informasi seputar Ma’had dengan cepat dan mudah.</p>
+    </section>
+
+    <!-- SERVICES - DENGAN TOGGLE SUB LAYANAN -->
+    <section id="services" class="services container">
+        <h3>Saya ingin tau...</h3>
+        <div class="grid">
+
+            <!-- Card Administrasi -->
+            <div class="card" id="admin-card">
+                <div class="card-header">
+                    <div class="icon">📄</div>
+                    <h4>Administrasi</h4>
+                    <p>Surat Tadarruj, Kerneh, pengurusan Mafsul, dan lainnya.</p>
+                    <button class="btn toggle-btn" data-card="admin">Lihat Layanan</button>
+                </div>
+
+                <div class="sub-services" id="sub-admin">
+                    <div class="sub-grid">
+                        <div class="sub-card">
+                            <span class="sub-icon">📖</span>
+                            <h5>Pengurusan Tadarruj Dirosi</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                        <div class="sub-card">
+                            <span class="sub-icon">📝</span>
+                            <h5>Pengurusan Mafsul</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                        <div class="sub-card">
+                            <span class="sub-icon">🏛️</span>
+                            <h5>Pengurusan Kerneh</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                        <div class="sub-card">
+                            <span class="sub-icon">📅</span>
+                            <h5>Pengurusan Daftar Kuliah</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Akademik -->
+            <div class="card" id="akademik-card">
+                <div class="card-header">
+                    <div class="icon">🎓</div>
+                    <h4>Informasi Akademik</h4>
+                    <p>Jadwal ujian, kalender pendidikan, dan nilai term 1.</p>
+                    <button class="btn toggle-btn" data-card="akademik">Lihat Layanan</button>
+                </div>
+
+                <div class="sub-services" id="sub-akademik">
+                    <div class="sub-grid">
+                        <div class="sub-card">
+                            <span class="sub-icon">📜</span>
+                            <h5>Muqorror Mahad</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                        <div class="sub-card">
+                            <span class="sub-icon">🗓️</span>
+                            <h5>Kalender Akademik</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                        <div class="sub-card">
+                            <span class="sub-icon">🎥</span>
+                            <h5>Rekaman Mudzakarah</h5>
+                            <button class="btn-small">Buka Layanan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PENGUMUMAN -->
+    <section id="pengumuman" class="announcements container">
+        <h3>Pengumuman Terbaru</h3>
+        <ul class="announcement-list">
+            <li>
+                <span class="title">Pendaftaran Beasiswa Ma'had Tahun 2026 Dibuka</span>
+                <span class="date">20 Oktober 2026</span>
+            </li>
+            <li>
+                <span class="title">Jadwal Ujian Semester Ganjil 2026/2027</span>
+                <span class="date">18 Oktober 2026</span>
+            </li>
+        </ul>
+        <a href="#" class="btn-text">Lihat Semua Pengumuman →</a>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 HPIM Mesir • Pusat Informasi Mahadian’s</p>
+            <div class="social-icons">
+                <a href="#">Instagram</a> • 
+                <a href="#">WhatsApp</a> • 
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
