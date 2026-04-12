@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Informasi Mahadian’s</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk ikon (opsional, bisa diganti emoji) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h2>Mahadian’s</h2>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#profil">Profil Mahad</a></li>
+                <li><a href="#akademik">Akademik</a></li>
+                <li><a href="#pengumuman">Pengumuman</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Hai, Mahadian’s! 👋</h1>
+            <p class="subtitle">Pusat informasi resmi Ma’had untuk seluruh santri dan wali santri</p>
+            <a href="#services" class="btn btn-primary">Jelajahi Sekarang</a>
+        </div>
+    </header>
+
+    <section id="intro" class="intro container">
+        <h2>Selamat datang di Pusat Informasi Mahadian’s</h2>
+        <p>Temukan berbagai informasi seputar Ma’had dengan cepat dan mudah.</p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services container">
+        <h3>Saya ingin...</h3>
+        <div class="grid">
+            <div class="card">
+                <div class="icon">📄</div>
+                <h4>Administrasi</h4>
+                <p>Surat keterangan, legalisir, berkas kesiswaan, dll.</p>
+                <a href="#" class="btn">Urus Sekarang</a>
+            </div>
+            <div class="card">
+                <div class="icon">🎓</div>
+                <h4>Informasi Akademik</h4>
+                <p>Jadwal ujian, kurikulum, kalender pendidikan, nilai.</p>
+                <a href="#" class="btn">Lihat Info</a>
+            </div>
+            <!-- Bisa tambah card lain: Pendaftaran, Fasilitas, Kegiatan, dll -->
+        </div>
+    </section>
+
+    <!-- PENGUMUMAN -->
+    <section id="pengumuman" class="announcements container">
+        <h3>Pengumuman Terbaru</h3>
+        <ul class="announcement-list">
+            <li>
+                <span class="title">Pendaftaran Beasiswa Ma'had Tahun 2026 Dibuka</span>
+                <span class="date">20 Oktober 2026</span>
+            </li>
+            <li>
+                <span class="title">Jadwal Ujian Semester Ganjil 2026/2027</span>
+                <span class="date">18 Oktober 2026</span>
+            </li>
+        </ul>
+        <a href="#" class="btn-text">Lihat Semua Pengumuman →</a>
+    </section>
+
+    <!-- EXTRA -->
+    <section class="extra container">
+        <div class="grid">
+            <div class="card-small">
+                <span>❓ FAQ</span>
+            </div>
+            <div class="card-small">
+                <span>📞 Kontak Kami</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 HPIM Mesir • Pusat Informasi Mahadian’s</p>
+            <div class="social-icons">
+                <a href="#">Instagram</a> • 
+                <a href="#">WhatsApp</a> • 
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
