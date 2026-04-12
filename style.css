@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #FAF8F5;
-    color: #3F3F3F;
+    background-color: #0F2A24;     /* Dark Green background */
+    color: #E8EDE9;
     line-height: 1.7;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -22,243 +22,136 @@ body {
 
 /* ====================== NAVBAR ====================== */
 .navbar {
-    background-color: rgba(250, 248, 245, 0.95);
+    background-color: rgba(15, 42, 36, 0.95);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #E5E0D8;
-}
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
+    border-bottom: 1px solid #2E5A4A;
 }
 
 .logo h2 {
-    color: #2C2C2C;
+    color: #F4E17C;   /* Butter Yellow untuk logo */
     font-weight: 700;
     font-size: 1.6rem;
 }
 
-.nav-menu {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-}
-
 .nav-menu a {
-    text-decoration: none;
-    color: #4A4A4A;
+    color: #E8EDE9;
     font-weight: 500;
-    transition: color 0.3s;
 }
 
 .nav-menu a:hover {
-    color: #8B5A2B; /* Warna coklat keemasan Islami */
+    color: #F4E17C;   /* Butter Yellow hover */
 }
 
-.hamburger {
-    display: none;
-    font-size: 1.6rem;
-    cursor: pointer;
-    color: #4A4A4A;
-}
-
-/* ====================== HERO ====================== */
+/* ====================== HERO dengan Gambar ====================== */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), 
-                url('https://source.unsplash.com/random/1600x900/?islamic-school,mosque') center/cover no-repeat;
-    padding: 140px 0 100px;
+    background: linear-gradient(rgba(15, 42, 36, 0.65), rgba(15, 42, 36, 0.75)), 
+                url('https://source.unsplash.com/random/1600x900/?madrasah,mosque,islamic-school') center/cover no-repeat;
+    padding: 160px 0 120px;
     text-align: center;
     color: white;
     position: relative;
 }
 
 .hero-content h1 {
-    font-size: 3.2rem;
+    font-size: 3.4rem;
     font-weight: 700;
     margin-bottom: 16px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    color: #F4E17C;   /* Butter Yellow untuk judul */
+    text-shadow: 0 3px 15px rgba(0,0,0,0.5);
 }
 
 .subtitle {
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto 30px;
-    font-weight: 400;
+    font-size: 1.3rem;
+    max-width: 650px;
+    margin: 0 auto 35px;
     opacity: 0.95;
-}
-
-/* ====================== SECTIONS ====================== */
-.intro, .services, .announcements, .extra {
-    padding: 70px 0;
-}
-
-h2, h3 {
-    color: #2C2C2C;
-    font-weight: 600;
-}
-
-h3 {
-    font-size: 1.55rem;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-/* Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-/* Card */
-.card {
-    background: #FFFFFF;
-    padding: 32px 28px;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
-    border: 1px solid #F0EDE6;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(139, 90, 43, 0.1);
-}
-
-.icon {
-    font-size: 2.8rem;
-    margin-bottom: 18px;
-    display: block;
-}
-
-.card h4 {
-    font-size: 1.25rem;
-    margin-bottom: 12px;
-    color: #2C2C2C;
-}
-
-.card p {
-    color: #666;
-    font-size: 0.95rem;
-    margin-bottom: 22px;
 }
 
 /* Button */
 .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #8B5A2B;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
+    background-color: #F4E17C;
+    color: #1A3C34;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s;
 }
 
 .btn:hover {
-    background-color: #6F4620;
-    transform: translateY(-2px);
+    background-color: #FFE89A;
+    transform: translateY(-3px);
+}
+
+/* ====================== SECTIONS ====================== */
+.intro, .services, .announcements, .extra {
+    padding: 80px 0;
+}
+
+h2, h3 {
+    color: #F4E17C;   /* Butter Yellow untuk heading */
+}
+
+/* Card */
+.card {
+    background: #1F4A40;
+    border: 1px solid #2E5A4A;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(244, 225, 124, 0.15);
+}
+
+.card h4 {
+    color: #F4E17C;
+}
+
+.card p {
+    color: #C0D4CE;
 }
 
 /* Announcement */
 .announcement-list {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    background: #1F4A40;
+    border: 1px solid #2E5A4A;
 }
 
 .announcement-list li {
-    padding: 18px 24px;
-    border-bottom: 1px solid #F4F1EB;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.announcement-list li:last-child {
-    border-bottom: none;
+    border-bottom: 1px solid #2E5A4A;
 }
 
 .announcement-list .date {
-    font-size: 0.85rem;
-    color: #8B5A2B;
-    font-weight: 500;
+    color: #F4E17C;
 }
 
 /* Card Small */
 .card-small {
-    background: #F8F4ED;
-    padding: 24px;
-    border-radius: 16px;
-    text-align: center;
-    font-weight: 600;
-    color: #5C4633;
-    cursor: pointer;
-    transition: all 0.3s;
+    background: #2E5A4A;
+    color: #F4E17C;
 }
 
 .card-small:hover {
-    background: #EDE4D4;
-    transform: scale(1.03);
+    background: #3A6B5A;
 }
 
 /* Footer */
 footer {
-    background-color: #2C2C2C;
-    color: #CCC;
-    padding: 50px 0 30px;
-    text-align: center;
-    margin-top: 80px;
-}
-
-footer a {
-    color: #CCC;
-    text-decoration: none;
-}
-
-.social-icons a {
-    margin: 0 12px;
-    transition: color 0.3s;
+    background-color: #0A1F1B;
+    color: #B8C6C2;
 }
 
 .social-icons a:hover {
-    color: #E0C090;
+    color: #F4E17C;
 }
 
 /* Responsif */
 @media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #FAF8F5;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    .nav-menu.active {
-        display: flex;
-    }
-    
-    .hamburger {
-        display: block;
-    }
-    
     .hero {
-        padding: 100px 0 80px;
+        padding: 110px 0 90px;
     }
     
     .hero-content h1 {
-        font-size: 2.4rem;
+        font-size: 2.6rem;
     }
 }
