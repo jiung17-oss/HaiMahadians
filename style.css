@@ -279,4 +279,87 @@ footer {
     .grid {
         grid-template-columns: 1fr;
     }
+}/* SUB LAYANAN - TOGGLE SYSTEM */
+.card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.card.expanded {
+    padding-bottom: 20px;
+}
+
+.card-main {
+    transition: all 0.4s ease;
+}
+
+.sub-content {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #2E5A4A;
+    animation: fadeInSub 0.4s ease forwards;
+}
+
+.card.expanded .sub-content {
+    display: block;
+}
+
+.card.expanded .card-main {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Sub Grid */
+.sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.sub-card {
+    background: #2E5A4A;
+    padding: 18px 14px;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.sub-card:hover {
+    background: #3A6B5A;
+    border-color: #F4E17C;
+    transform: translateY(-4px);
+}
+
+.sub-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.sub-card h5 {
+    font-size: 0.95rem;
+    color: #F4E17C;
+    margin-bottom: 12px;
+}
+
+.btn-small {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    background-color: #F4E17C;
+    color: #0F2A24;
+}
+
+/* Animasi halus */
+@keyframes fadeInSub {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Tombol toggle & close */
+.toggle-btn, .close-btn {
+    width: 100%;
+    margin-top: 10px;
 }

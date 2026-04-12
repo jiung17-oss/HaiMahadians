@@ -92,3 +92,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTop = document.createElement('button');
     backToTop.innerHTML = '↑';
     backTo
+    // ====================== INTERACTIVE CARD SUB-LAYANAN ======================
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const card = this.closest('.card');
+        const target = this.getAttribute('data-target');
+        const subContent = document.getElementById(`sub-${target}`);
+
+        // Toggle expanded class
+        card.classList.toggle('expanded');
+
+        // Ganti teks tombol utama
+        if (card.classList.contains('expanded')) {
+            this.textContent = 'Tutup';
+        } else {
+            this.textContent = (target === 'admin') ? 'Urus Sekarang' : 'Lihat Info';
+        }
+    });
+});
+
+document.querySelectorAll('.close-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const card = this.closest('.card');
+        const target = this.getAttribute('data-target');
+        const toggleBtn = card.querySelector('.toggle-btn');
+
+        card.classList.remove('expanded');
+        toggleBtn.textContent = (target === 'admin') ? 'Urus Sekarang' : 'Lihat Info';
+    });
+});

@@ -45,24 +45,84 @@
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="services container">
-        <h3>Saya ingin...</h3>
-        <div class="grid">
-            <div class="card">
+    <!-- SERVICES / CARD UTAMA -->
+<section id="services" class="services container">
+    <h3>Saya ingin...</h3>
+    <div class="grid main-grid">
+
+        <!-- CARD ADMINISTRASI -->
+        <div class="card admin-card" id="card-admin">
+            <div class="card-main">
                 <div class="icon">📄</div>
                 <h4>Administrasi</h4>
                 <p>Surat keterangan, legalisir, berkas kesiswaan, dan layanan administrasi lainnya.</p>
-                <a href="#" class="btn">Urus Sekarang</a>
+                <button class="btn toggle-btn" data-target="admin">Urus Sekarang</button>
             </div>
-            <div class="card">
-                <div class="icon">📚</div>
-                <h4>Informasi Akademik</h4>
-                <p>Jadwal ujian, kalender pendidikan, dan nilai term.</p>
-                <a href="#" class="btn">Lihat Info</a>
+
+            <!-- SUB LAYANAN ADMINISTRASI (muncul saat diklik) -->
+            <div class="sub-content" id="sub-admin">
+                <h4 class="sub-title">Layanan Administrasi</h4>
+                <div class="sub-grid">
+                    <div class="sub-card">
+                        <div class="sub-icon">📖</div>
+                        <h5>Pengurusan Tadarruj Dirosi</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                    <div class="sub-card">
+                        <div class="sub-icon">📝</div>
+                        <h5>Pengurusan Mafsul</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                    <div class="sub-card">
+                        <div class="sub-icon">🏛️</div>
+                        <h5>Pengurusan Kerneh</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                    <div class="sub-card">
+                        <div class="sub-icon">📅</div>
+                        <h5>Pengurusan Daftar Kuliah</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                </div>
+                <button class="btn close-btn" data-target="admin">Tutup</button>
             </div>
         </div>
-    </section>
 
+        <!-- CARD AKADEMIK -->
+        <div class="card akademik-card" id="card-akademik">
+            <div class="card-main">
+                <div class="icon">🎓</div>
+                <h4>Informasi Akademik</h4>
+                <p>Jadwal ujian, kurikulum, kalender pendidikan, dan nilai santri.</p>
+                <button class="btn toggle-btn" data-target="akademik">Lihat Info</button>
+            </div>
+
+            <!-- SUB LAYANAN AKADEMIK -->
+            <div class="sub-content" id="sub-akademik">
+                <h4 class="sub-title">Layanan Akademik</h4>
+                <div class="sub-grid">
+                    <div class="sub-card">
+                        <div class="sub-icon">📜</div>
+                        <h5>Muqorror Mahad</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                    <div class="sub-card">
+                        <div class="sub-icon">🗓️</div>
+                        <h5>Kalender Akademik</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                    <div class="sub-card">
+                        <div class="sub-icon">🎥</div>
+                        <h5>Rekaman Mudzakarah</h5>
+                        <button class="btn-small">Buka Layanan</button>
+                    </div>
+                </div>
+                <button class="btn close-btn" data-target="akademik">Tutup</button>
+            </div>
+        </div>
+
+    </div>
+</section>
     <!-- PENGUMUMAN -->
     <section id="pengumuman" class="announcements container">
         <h3>Pengumuman Terbaru</h3>
