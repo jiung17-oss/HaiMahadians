@@ -245,121 +245,54 @@ footer {
     color: #F4E17C;
 }
 
-/* ====================== RESPONSIVE ====================== */
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #0F2A24;
-        padding: 25px 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        gap: 18px;
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .hero {
-        padding: 120px 0 100px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.6rem;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-}/* SUB LAYANAN - TOGGLE SYSTEM */
-.card {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
+/* ================== SUB SERVICES ================== */
+.card-header {
+    transition: all 0.3s ease;
 }
 
-.card.expanded {
-    padding-bottom: 20px;
-}
-
-.card-main {
-    transition: all 0.4s ease;
-}
-
-.sub-content {
+.sub-services {
     display: none;
-    margin-top: 20px;
+    margin-top: 25px;
     padding-top: 20px;
-    border-top: 1px solid #2E5A4A;
-    animation: fadeInSub 0.4s ease forwards;
+    border-top: 1px dashed #2E5A4A;
 }
 
-.card.expanded .sub-content {
-    display: block;
-}
-
-.card.expanded .card-main {
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-/* Sub Grid */
 .sub-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 16px;
-    margin-bottom: 20px;
 }
 
 .sub-card {
     background: #2E5A4A;
-    padding: 18px 14px;
+    padding: 20px 15px;
     border-radius: 14px;
     text-align: center;
     transition: all 0.3s;
-    border: 1px solid transparent;
 }
 
 .sub-card:hover {
+    transform: translateY(-5px);
     background: #3A6B5A;
-    border-color: #F4E17C;
-    transform: translateY(-4px);
 }
 
 .sub-icon {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+    display: block;
     margin-bottom: 12px;
 }
 
 .sub-card h5 {
-    font-size: 0.95rem;
     color: #F4E17C;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    font-size: 0.98rem;
 }
 
-.btn-small {
-    padding: 8px 18px;
-    font-size: 0.85rem;
-    background-color: #F4E17C;
-    color: #0F2A24;
+/* Saat card terbuka */
+.card.active .sub-services {
+    display: block;
 }
 
-/* Animasi halus */
-@keyframes fadeInSub {
-    from { opacity: 0; transform: translateY(15px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Tombol toggle & close */
-.toggle-btn, .close-btn {
-    width: 100%;
-    margin-top: 10px;
+.card.active .card-header {
+    opacity: 0.85;
 }

@@ -121,3 +121,25 @@ document.querySelectorAll('.close-btn').forEach(btn => {
         toggleBtn.textContent = (target === 'admin') ? 'Urus Sekarang' : 'Lihat Info';
     });
 });
+// Toggle Sub Services
+document.querySelectorAll('.toggle-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const cardId = this.getAttribute('data-card');
+        const card = document.getElementById(cardId + '-card');
+        
+        // Tutup semua card yang terbuka
+        document.querySelectorAll('.card').forEach(c => {
+            if (c !== card) c.classList.remove('active');
+        });
+
+        // Toggle card yang diklik
+        card.classList.toggle('active');
+
+        // Ubah teks tombol
+        if (card.classList.contains('active')) {
+            this.textContent = 'Tutup';
+        } else {
+            this.textContent = (cardId === 'admin') ? 'Lihat Layanan' : 'Lihat Layanan';
+        }
+    });
+});
