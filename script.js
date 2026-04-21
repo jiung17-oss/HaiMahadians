@@ -131,18 +131,16 @@ const start = performance.now();
 ```
 function frame(now) {
   const progress = Math.min((now - start) / dur, 1);
-  // Ease out
   const ease = 1 - Math.pow(1 - progress, 3);
   const val = target * ease;
   el.textContent = isFloat
-    ? val.toFixed(1)
-    : target >= 1000
-      ? Math.floor(val).toLocaleString('id-ID')
-      : Math.floor(val);
+    ? val.toFixed(1) :
+      Math.floor(val).toLocaleString('id-ID');
+      
   if (progress < 1) requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-```
+
 
 });
 }
@@ -162,7 +160,7 @@ card.addEventListener('mousemove', e => {
 const rect = card.getBoundingClientRect();
 const x = (e.clientX - rect.left) / rect.width  - 0.5;
 const y = (e.clientY - rect.top)  / rect.height - 0.5;
-card.style.transform = 'perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(6px)';
+card.style.transform = perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(6px);
 });
 card.addEventListener('mouseleave', () => {
 card.style.transform = `perspective(800px) rotateY(0) rotateX(0) translateZ(0)`;
@@ -260,7 +258,7 @@ itemsEl.querySelectorAll('.cl-del').forEach(btn => {
 function addToCart(name, price, size, color, img) {
 cart.push({ name, price: +price, size, color, img: img || '' });
 updateCart();
-showToast('✅ ${name} (${size}) ditambahkan!');
+showToast( ` ✅ ${name} (${size}) ditambahkan!`);
 }
 
 /* Open / close */
@@ -309,9 +307,13 @@ const items = cart.map(i => '• ${i.name} (${i.size} / ${i.color})').join('\n')
 const msg = encodeURIComponent(
  `Halo Hai Mahadians!\n\nSaya mau pesan:\n${items}\n\nTotal: ${fmt(total)}\n\nMohon diproses. Terima kasih!`
 );
-window.open('https://wa.me/6281234567890?text=${msg}', '_blank');
+window.open( ` https://wa.me/6281234567890?text=${msg},` _ `blank`);
 });
 }
+window.removeItem = (idx) => {
+  cart.splice(idx, 1);
+  updateCart();
+};
 
 /* ─── TOAST ─────────────────────────────────── */
 const toastEl = $('toast');
