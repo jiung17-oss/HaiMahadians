@@ -36,7 +36,7 @@ $$(’.reveal-up’).forEach((el, i) => {
 setTimeout(() => el.classList.add(‘in’), i * 80);
 });
 startCounters();
-}, 400);
+}, 150);
 }
 })();
 
