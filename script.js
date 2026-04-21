@@ -165,7 +165,7 @@ const y = (e.clientY - rect.top)  / rect.height - 0.5;
 card.style.transform = 'perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(6px)';
 });
 card.addEventListener('mouseleave', () => {
-card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
+card.style.transform = `perspective(800px) rotateY(0) rotateX(0) translateZ(0)`;
 card.style.transition = 'transform .5s var(–ease), border-color .3s, box-shadow .3s';
 setTimeout(() => card.style.transition = '', 500);
 });
@@ -180,7 +180,7 @@ $$('.hero-bg-letters span').forEach((s, i) => {
 const depth = (i + 1) * 0.015;
 const x = (e.clientX / window.innerWidth  - 0.5) * depth * 100;
 const y = (e.clientY / window.innerHeight - 0.5) * depth * 60;
-s.style.transform = 'translate(${x}px,${y}px)';
+s.style.transform = `translate(${x}px,${y}px)`;
 });
 }, { passive: true });
 
@@ -239,8 +239,8 @@ if (totalEl) totalEl.textContent = fmt(total);
 if (!itemsEl) return;
 
 if (cart.length === 0) {
-itemsEl.innerHTML = ' <div class="cart-empty-state"> <span>🛒</span> <p>Keranjangmu masih kosong</p> </div>';
-if (footEl) footEl.style.display = ‘none’;
+itemsEl.innerHTML = ` <div class="cart-empty-state"> <span>🛒</span> <p>Keranjangmu masih kosong</p> </div>`;
+if (footEl) footEl.style.display = 'none';
 } else {
 if (footEl) footEl.style.display = 'block';
 itemsEl.innerHTML = cart.map((item, idx) => ' <div class="cart-line"> <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=50'"/> <div class="cl-info"> <div class="cl-name">${item.name}</div> <div class="cl-price">${fmt(item.price)}</div> <div class="cl-size">Ukuran: ${item.size} · ${item.color}</div> </div> <button class="cl-del" data-idx="${idx}">✕</button> </div>').join('');
@@ -307,7 +307,7 @@ if (cart.length === 0) return showToast('🛒 Keranjang kosong!');
 const total = cart.reduce((s, i) => s + i.price, 0);
 const items = cart.map(i => '• ${i.name} (${i.size} / ${i.color})').join('\n');
 const msg = encodeURIComponent(
-'Halo Hai Mahadians!\n\nSaya mau pesan:\n${items}\n\nTotal: ${fmt(total)}\n\nMohon diproses. Terima kasih!'
+ `Halo Hai Mahadians!\n\nSaya mau pesan:\n${items}\n\nTotal: ${fmt(total)}\n\nMohon diproses. Terima kasih!`
 );
 window.open('https://wa.me/6281234567890?text=${msg}', '_blank');
 });
@@ -408,7 +408,7 @@ const sectObs  = new IntersectionObserver(entries => {
 entries.forEach(entry => {
 if (entry.isIntersecting) {
 navAs.forEach(a => {
-a.style.color = a.getAttribute(‘href’) === '#' + entry.target.id
+a.style.color = a.getAttribute('href') === '#' + entry.target.id
 ? 'var(–white)' : '';
 });
 }
