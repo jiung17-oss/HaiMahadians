@@ -19,6 +19,10 @@ document.body.classList.add(‘loading’);
 const bar   = $(‘preBar’);
 const count = $(‘preCount’);
 const pre   = $(‘preloader’);
+
+if (!bar || !count || !pre) return; // Safety check
+document.body.classList.add('loading');
+
 let pct = 0;
 const iv = setInterval(() => {
 pct += Math.random() * 8 + 2;
@@ -32,11 +36,11 @@ setTimeout(() => {
 pre.classList.add(‘done’);
 document.body.classList.remove(‘loading’);
 // Trigger hero reveals after preloader
-$$(’.reveal-up’).forEach((el, i) => {
+document.querySelectorAll(’.reveal-up’).forEach((el, i) => {
 setTimeout(() => el.classList.add(‘in’), i * 80);
 });
 startCounters();
-}, 150);
+}, 400);
 }
 })();
 
