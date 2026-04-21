@@ -6,7 +6,7 @@ HAI MAHADIANS v2 — script.js
 /* ─── UTILS ─────────────────────────────────── */
 const $ = id => document.getElementById(id);
 const $$ = sel => document.querySelectorAll(sel);
-const fmt = n => 'Rp ' + Number(n).toLocaleString('id-ID');
+const fmt = n => 'Rp' + Number(n).toLocaleString('id-ID');
 
 /* ─── STATE ─────────────────────────────────── */
 let cart = [];
@@ -160,7 +160,7 @@ card.addEventListener('mousemove', e => {
 const rect = card.getBoundingClientRect();
 const x = (e.clientX - rect.left) / rect.width  - 0.5;
 const y = (e.clientY - rect.top)  / rect.height - 0.5;
-card.style.transform = perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(6px);
+card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
 });
 card.addEventListener('mouseleave', () => {
 card.style.transform = `perspective(800px) rotateY(0) rotateX(0) translateZ(0)`;
@@ -241,7 +241,17 @@ itemsEl.innerHTML = ` <div class="cart-empty-state"> <span>🛒</span> <p>Keranj
 if (footEl) footEl.style.display = 'none';
 } else {
 if (footEl) footEl.style.display = 'block';
-itemsEl.innerHTML = cart.map((item, idx) => ' <div class="cart-line"> <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=50'"/> <div class="cl-info"> <div class="cl-name">${item.name}</div> <div class="cl-price">${fmt(item.price)}</div> <div class="cl-size">Ukuran: ${item.size} · ${item.color}</div> </div> <button class="cl-del" data-idx="${idx}">✕</button> </div>').join('');
+itemsEl.innerHTML = cart.map((item, idx) 
+  => ' <div class="cart-line"> 
+  <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=50'"/>
+  <div class="cl-info"> 
+  <div class="cl-name">${item.name}</div> 
+  <div class="cl-price">${fmt(item.price)}</div> 
+  <div class="cl-size">Ukuran: ${item.size} · ${item.color}</div> 
+  </div> 
+  <button class="cl-del" data-idx="${idx}">✕</button> 
+  </div>`;
+.join('');
 
 ```
 itemsEl.querySelectorAll('.cl-del').forEach(btn => {
