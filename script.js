@@ -50,14 +50,6 @@ function dismissPreloader(pre) {
   }, 500);
 }
 
-// Jalankan preloader paling awal
-document.addEventListener('DOMContentLoaded', () => {
-  initPreloader();
-  // Panggil fungsi lainnya di sini (initNavbar, dll)
-  // Pastikan fungsi lain juga sudah diperbaiki tanda kutipnya!
-});
-
-
 /* ─── ANIMATED COUNTERS ─────────────────────── */
 function startCounters() {
 $$(’.hs-num’).forEach(el => {
