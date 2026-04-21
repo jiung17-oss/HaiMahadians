@@ -1,246 +1,417 @@
 /* =============================================
-HAI MAHADIANS — script.js
+HAI MAHADIANS v2 — script.js
 ============================================= */
+‘use strict’;
 
-// ─── STATE ───────────────────────────────────
+/* ─── UTILS ─────────────────────────────────── */
+const $ = id => document.getElementById(id);
+const $$ = sel => document.querySelectorAll(sel);
+const fmt = n => ’Rp ’ + Number(n).toLocaleString(‘id-ID’);
+
+/* ─── STATE ─────────────────────────────────── */
 let cart = [];
 let selectedSize = ‘40’;
+let selectedColor = ‘Ember Orange’;
 
-// ─── DOM REFS ─────────────────────────────────
-const navbar      = document.getElementById(‘navbar’);
-const hamburger   = document.getElementById(‘hamburger’);
-const navLinks    = document.getElementById(‘navLinks’);
-const cartBtn     = document.getElementById(‘cartBtn’);
-const cartClose   = document.getElementById(‘cartClose’);
-const cartOverlay = document.getElementById(‘cartOverlay’);
-const cartSidebar = document.getElementById(‘cartSidebar’);
-const cartItems   = document.getElementById(‘cartItems’);
-const cartFooter  = document.getElementById(‘cartFooter’);
-const cartCount   = document.getElementById(‘cartCount’);
-const cartTotal   = document.getElementById(‘cartTotal’);
-const checkoutBtn = document.getElementById(‘checkoutBtn’);
-const heroShoe    = document.getElementById(‘heroShoe’);
-const heroAddCart = document.getElementById(‘heroAddCart’);
-const toast       = document.getElementById(‘toast’);
-const contactForm = document.getElementById(‘contactForm’);
+/* ─── PRELOADER ─────────────────────────────── */
+(function preload() {
+document.body.classList.add(‘loading’);
+const bar   = $(‘preBar’);
+const count = $(‘preCount’);
+const pre   = $(‘preloader’);
+let pct = 0;
+const iv = setInterval(() => {
+pct += Math.random() * 8 + 2;
+if (pct >= 100) { pct = 100; clearInterval(iv); finish(); }
+bar.style.width = pct + ‘%’;
+count.textContent = Math.floor(pct) + ‘%’;
+}, 60);
 
-// ─── NAVBAR SCROLL ───────────────────────────
-window.addEventListener(‘scroll’, () => {
-navbar.classList.toggle(‘scrolled’, window.scrollY > 50);
+function finish() {
+setTimeout(() => {
+pre.classList.add(‘done’);
+document.body.classList.remove(‘loading’);
+// Trigger hero reveals after preloader
+$$(’.reveal-up’).forEach((el, i) => {
+setTimeout(() => el.classList.add(‘in’), i * 80);
+});
+startCounters();
+}, 400);
+}
+})();
+
+/* ─── CUSTOM CURSOR ─────────────────────────── */
+const dot  = $(‘cursorDot’);
+const ring = $(‘cursorRing’);
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+if (dot && ring) {
+document.addEventListener(‘mousemove’, e => {
+mx = e.clientX; my = e.clientY;
+dot.style.left  = mx + ‘px’;
+dot.style.top   = my + ‘px’;
 });
 
-// ─── HAMBURGER MENU ──────────────────────────
+// Ring follows with lag
+(function animCursor() {
+rx += (mx - rx) * 0.12;
+ry += (my - ry) * 0.12;
+ring.style.left = rx + ‘px’;
+ring.style.top  = ry + ‘px’;
+requestAnimationFrame(animCursor);
+})();
+
+// Hover effect on interactive elements
+const hoverEls = ‘a,button,.sw,.sz,.pcard,.rev-card’;
+document.addEventListener(‘mouseover’, e => {
+if (e.target.closest(hoverEls)) {
+dot.classList.add(‘hovered’);
+ring.classList.add(‘hovered’);
+}
+});
+document.addEventListener(‘mouseout’, e => {
+if (e.target.closest(hoverEls)) {
+dot.classList.remove(‘hovered’);
+ring.classList.remove(‘hovered’);
+}
+});
+}
+
+/* ─── SCROLL PROGRESS ───────────────────────── */
+const progressBar = $(‘scrollProgress’);
+window.addEventListener(‘scroll’, () => {
+const h   = document.documentElement;
+const pct = (window.scrollY / (h.scrollHeight - h.clientHeight)) * 100;
+if (progressBar) progressBar.style.width = pct + ‘%’;
+}, { passive: true });
+
+/* ─── NAVBAR ────────────────────────────────── */
+const navbar    = $(‘navbar’);
+const hamburger = $(‘hamburger’);
+const navLinks  = $(‘navLinks’);
+
+window.addEventListener(‘scroll’, () => {
+navbar.classList.toggle(‘scrolled’, window.scrollY > 60);
+}, { passive: true });
+
 hamburger.addEventListener(‘click’, () => {
 hamburger.classList.toggle(‘open’);
 navLinks.classList.toggle(‘open’);
 });
-navLinks.querySelectorAll(‘a’).forEach(link => {
-link.addEventListener(‘click’, () => {
+navLinks.querySelectorAll(‘a’).forEach(a => {
+a.addEventListener(‘click’, () => {
 hamburger.classList.remove(‘open’);
 navLinks.classList.remove(‘open’);
 });
 });
 
-// ─── COLOR PICKER (HERO) ─────────────────────
-document.querySelectorAll(’.color-dot’).forEach(dot => {
-dot.addEventListener(‘click’, () => {
-document.querySelectorAll(’.color-dot’).forEach(d => d.classList.remove(‘active’));
-dot.classList.add(‘active’);
-const img = dot.dataset.img;
-if (img && heroShoe) {
-heroShoe.style.opacity = ‘0’;
-heroShoe.style.transform = ‘scale(.92) rotate(-6deg)’;
-setTimeout(() => {
-heroShoe.src = img;
-heroShoe.style.opacity = ‘1’;
-heroShoe.style.transform = ‘’;
-}, 300);
+/* ─── REVEAL ON SCROLL ──────────────────────── */
+const revObs = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add(‘in’);
+revObs.unobserve(entry.target);
 }
+});
+}, { threshold: 0.12 });
+
+$$(’.reveal-up’).forEach(el => revObs.observe(el));
+
+/* ─── ANIMATED COUNTERS ─────────────────────── */
+function startCounters() {
+$$(’.hs-num’).forEach(el => {
+const target = parseFloat(el.dataset.count);
+const isFloat = ‘float’ in el.dataset;
+const dur = 1800;
+const start = performance.now();
+
+```
+function frame(now) {
+  const progress = Math.min((now - start) / dur, 1);
+  // Ease out
+  const ease = 1 - Math.pow(1 - progress, 3);
+  const val = target * ease;
+  el.textContent = isFloat
+    ? val.toFixed(1)
+    : target >= 1000
+      ? Math.floor(val).toLocaleString('id-ID')
+      : Math.floor(val);
+  if (progress < 1) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+```
+
+});
+}
+
+// Also trigger when stats section enters view
+const statsEl = document.querySelector(’.hero-stats’);
+if (statsEl) {
+const statsObs = new IntersectionObserver(entries => {
+if (entries[0].isIntersecting) { startCounters(); statsObs.disconnect(); }
+}, { threshold: 0.3 });
+statsObs.observe(statsEl);
+}
+
+/* ─── 3D TILT ON PRODUCT CARDS ──────────────── */
+$$(’.pcard’).forEach(card => {
+card.addEventListener(‘mousemove’, e => {
+const rect = card.getBoundingClientRect();
+const x = (e.clientX - rect.left) / rect.width  - 0.5;
+const y = (e.clientY - rect.top)  / rect.height - 0.5;
+card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(6px)`;
+});
+card.addEventListener(‘mouseleave’, () => {
+card.style.transform = ‘perspective(800px) rotateY(0) rotateX(0) translateZ(0)’;
+card.style.transition = ‘transform .5s var(–ease), border-color .3s, box-shadow .3s’;
+setTimeout(() => card.style.transition = ‘’, 500);
+});
+card.addEventListener(‘mouseenter’, () => {
+card.style.transition = ‘border-color .3s, box-shadow .3s’;
 });
 });
 
-// ─── SIZE PICKER ─────────────────────────────
-document.querySelectorAll(’.size-btn’).forEach(btn => {
+/* ─── HERO PARALLAX (bg letters) ────────────── */
+window.addEventListener(‘mousemove’, e => {
+$$(’.hero-bg-letters span’).forEach((s, i) => {
+const depth = (i + 1) * 0.015;
+const x = (e.clientX / window.innerWidth  - 0.5) * depth * 100;
+const y = (e.clientY / window.innerHeight - 0.5) * depth * 60;
+s.style.transform = `translate(${x}px,${y}px)`;
+});
+}, { passive: true });
+
+/* ─── COLOR PICKER ──────────────────────────── */
+const heroShoe  = $(‘heroShoe’);
+const colorName = $(‘colorName’);
+
+$$(’.sw’).forEach(sw => {
+sw.addEventListener(‘click’, () => {
+$$(’.sw’).forEach(s => s.classList.remove(‘active’));
+sw.classList.add(‘active’);
+selectedColor = sw.dataset.color;
+if (colorName) colorName.textContent = selectedColor;
+
+```
+const img = sw.dataset.img;
+if (img && heroShoe) {
+  heroShoe.style.opacity = '0';
+  heroShoe.style.transform = 'scale(.88) rotate(-6deg)';
+  setTimeout(() => {
+    heroShoe.src = img;
+    heroShoe.style.opacity = '1';
+    heroShoe.style.transform = '';
+  }, 350);
+}
+```
+
+});
+});
+
+/* ─── SIZE PICKER ───────────────────────────── */
+$$(’.sz’).forEach(btn => {
 btn.addEventListener(‘click’, () => {
-document.querySelectorAll(’.size-btn’).forEach(b => b.classList.remove(‘active’));
+$$(’.sz’).forEach(b => b.classList.remove(‘active’));
 btn.classList.add(‘active’);
 selectedSize = btn.dataset.size;
 });
 });
 
-// ─── CART HELPERS ────────────────────────────
-function formatRp(num) {
-return ’Rp ’ + Number(num).toLocaleString(‘id-ID’);
-}
+/* ─── CART ──────────────────────────────────── */
+function updateCart() {
+const countEl = $(‘cartCount’);
+const totalEl = $(‘cartTotal’);
+const itemsEl = $(‘cartItems’);
+const footEl  = $(‘cartFooter’);
+const total   = cart.reduce((s, i) => s + i.price, 0);
 
-function updateCartUI() {
-const total = cart.reduce((s, i) => s + i.price, 0);
-cartCount.textContent = cart.length;
-cartTotal.textContent = formatRp(total);
+if (countEl) {
+countEl.textContent = cart.length;
+countEl.classList.remove(‘bump’);
+void countEl.offsetWidth;
+countEl.classList.add(‘bump’);
+}
+if (totalEl) totalEl.textContent = fmt(total);
+
+if (!itemsEl) return;
 
 if (cart.length === 0) {
-cartItems.innerHTML = ` <div class="cart-empty"> <span>🛒</span> <p>Keranjangmu masih kosong</p> </div>`;
-cartFooter.style.display = ‘none’;
+itemsEl.innerHTML = ` <div class="cart-empty-state"> <span>🛒</span> <p>Keranjangmu masih kosong</p> </div>`;
+if (footEl) footEl.style.display = ‘none’;
 } else {
-cartFooter.style.display = ‘block’;
-cartItems.innerHTML = cart.map((item, idx) => `<div class="cart-line"> <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=60'"/> <div class="cart-line-info"> <div class="cart-line-name">${item.name}</div> <div class="cart-line-price">${formatRp(item.price)}</div> <div style="font-size:.75rem;color:#777;margin-top:3px">Ukuran: ${item.size}</div> </div> <button class="cart-line-remove" data-idx="${idx}" title="Hapus">✕</button> </div>`).join(’’);
+if (footEl) footEl.style.display = ‘block’;
+itemsEl.innerHTML = cart.map((item, idx) => ` <div class="cart-line"> <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=50'"/> <div class="cl-info"> <div class="cl-name">${item.name}</div> <div class="cl-price">${fmt(item.price)}</div> <div class="cl-size">Ukuran: ${item.size} · ${item.color}</div> </div> <button class="cl-del" data-idx="${idx}">✕</button> </div>`).join(’’);
 
 ```
-cartItems.querySelectorAll('.cart-line-remove').forEach(btn => {
+itemsEl.querySelectorAll('.cl-del').forEach(btn => {
   btn.addEventListener('click', () => {
-    const idx = parseInt(btn.dataset.idx);
-    cart.splice(idx, 1);
-    updateCartUI();
+    cart.splice(+btn.dataset.idx, 1);
+    updateCart();
   });
 });
 ```
 
 }
-
-// Bump animation
-cartCount.classList.remove(‘bump’);
-void cartCount.offsetWidth; // reflow
-cartCount.classList.add(‘bump’);
 }
 
-function addToCart(name, price, size, img) {
-cart.push({ name, price: parseInt(price), size, img });
-updateCartUI();
+function addToCart(name, price, size, color, img) {
+cart.push({ name, price: +price, size, color, img: img || ‘’ });
+updateCart();
 showToast(`✅ ${name} (${size}) ditambahkan!`);
 }
 
-// ─── OPEN / CLOSE CART ───────────────────────
-function openCart() {
-cartSidebar.classList.add(‘open’);
-cartOverlay.classList.add(‘visible’);
+/* Open / close */
+const cartOverlay = $(‘cartOverlay’);
+const cartDrawer  = $(‘cartDrawer’);
+const cartClose   = $(‘cartClose’);
+
+function openCart()  {
+cartDrawer.classList.add(‘open’);
+cartOverlay.classList.add(‘open’);
 document.body.style.overflow = ‘hidden’;
 }
 function closeCart() {
-cartSidebar.classList.remove(‘open’);
-cartOverlay.classList.remove(‘visible’);
+cartDrawer.classList.remove(‘open’);
+cartOverlay.classList.remove(‘open’);
 document.body.style.overflow = ‘’;
 }
 
-cartBtn.addEventListener(‘click’, openCart);
-cartClose.addEventListener(‘click’, closeCart);
-cartOverlay.addEventListener(‘click’, closeCart);
+$(‘cartBtn’).addEventListener(‘click’, openCart);
+if (cartClose) cartClose.addEventListener(‘click’, closeCart);
+if (cartOverlay) cartOverlay.addEventListener(‘click’, closeCart);
 
-// ─── HERO ADD TO CART ────────────────────────
-heroAddCart.addEventListener(‘click’, () => {
-const img = document.querySelector(’.color-dot.active’)?.dataset.img
-|| heroShoe.src;
-addToCart(
-heroAddCart.dataset.product,
-heroAddCart.dataset.price,
-selectedSize,
-img
-);
+/* Hero add */
+$(‘heroAddCart’).addEventListener(‘click’, () => {
+const img = document.querySelector(’.sw.active’)?.dataset.img || heroShoe?.src || ‘’;
+addToCart(‘Nike Air Max 720’, 2499000, selectedSize, selectedColor, img);
 });
 
-// ─── PRODUCT CARD ADD TO CART ─────────────────
-document.querySelectorAll(’.card-add’).forEach(btn => {
-btn.addEventListener(‘click’, () => {
-// Find closest image in same card
-const card = btn.closest(’.product-card’);
-const img  = card.querySelector(‘img’)?.src || ‘’;
-addToCart(btn.dataset.product, btn.dataset.price, selectedSize, img);
+/* Product card add */
+$$(’.pcard-add, .quick-view’).forEach(btn => {
+btn.addEventListener(‘click’, e => {
+e.stopPropagation();
+const card = btn.closest(’.pcard’);
+const img  = card?.querySelector(‘img’)?.src || ‘’;
+addToCart(btn.dataset.product, btn.dataset.price, selectedSize, selectedColor, img);
 });
 });
 
-// ─── CHECKOUT BUTTON ─────────────────────────
+/* Checkout */
+const checkoutBtn = $(‘checkoutBtn’);
+if (checkoutBtn) {
 checkoutBtn.addEventListener(‘click’, () => {
+if (cart.length === 0) return showToast(‘🛒 Keranjang kosong!’);
 const total = cart.reduce((s, i) => s + i.price, 0);
-const items = cart.map(i => `${i.name} (${i.size})`).join(’, ’);
+const items = cart.map(i => `• ${i.name} (${i.size} / ${i.color})`).join(’\n’);
 const msg = encodeURIComponent(
-`Halo Hai Mahadians! Saya ingin memesan:\n${items}\n\nTotal: ${formatRp(total)}\n\nMohon informasi lebih lanjut. Terima kasih!`
+`Halo Hai Mahadians!\n\nSaya mau pesan:\n${items}\n\nTotal: ${fmt(total)}\n\nMohon diproses. Terima kasih!`
 );
 window.open(`https://wa.me/6281234567890?text=${msg}`, ‘_blank’);
 });
+}
 
-// ─── TOAST ───────────────────────────────────
+/* ─── TOAST ─────────────────────────────────── */
+const toastEl = $(‘toast’);
 let toastTimer;
 function showToast(msg) {
-toast.textContent = msg;
-toast.classList.add(‘show’);
+toastEl.textContent = msg;
+toastEl.classList.add(‘show’);
 clearTimeout(toastTimer);
-toastTimer = setTimeout(() => toast.classList.remove(‘show’), 2800);
+toastTimer = setTimeout(() => toastEl.classList.remove(‘show’), 2800);
 }
 
-// ─── REVEAL ON SCROLL ─────────────────────────
-const revealEls = document.querySelectorAll(’[data-reveal]’);
-const revealObs = new IntersectionObserver(entries => {
-entries.forEach((entry, i) => {
-if (entry.isIntersecting) {
-// stagger
-setTimeout(() => entry.target.classList.add(‘visible’), i * 80);
-revealObs.unobserve(entry.target);
-}
-});
-}, { threshold: 0.15 });
-revealEls.forEach(el => revealObs.observe(el));
-
-// ─── REVIEW SLIDER (mobile-style dots) ────────
-const slider    = document.getElementById(‘reviewsSlider’);
-const dotsWrap  = document.getElementById(‘sliderDots’);
-const cards     = slider ? slider.querySelectorAll(’.review-card’) : [];
-let activeSlide = 0;
+/* ─── REVIEW SLIDER ─────────────────────────── */
+const revTrack = $(‘revTrack’);
+const revDots  = $(‘revDots’);
+const revPrev  = $(‘revPrev’);
+const revNext  = $(‘revNext’);
+const revCards = revTrack ? Array.from(revTrack.querySelectorAll(’.rev-card’)) : [];
+let revIdx = 0;
+let revAutoTimer;
 
 function buildDots() {
-if (!dotsWrap) return;
-dotsWrap.innerHTML = ‘’;
-cards.forEach((_, i) => {
-const d = document.createElement(‘button’);
-d.className = ‘slider-dot’ + (i === 0 ? ’ active’ : ‘’);
-d.setAttribute(‘aria-label’, `Review ${i+1}`);
-d.addEventListener(‘click’, () => goToSlide(i));
-dotsWrap.appendChild(d);
+if (!revDots) return;
+revDots.innerHTML = revCards.map((_, i) =>
+`<button class="rdot${i===0?' active':''}" aria-label="Slide ${i+1}"></button>`
+).join(’’);
+revDots.querySelectorAll(’.rdot’).forEach((d, i) => {
+d.addEventListener(‘click’, () => goSlide(i));
 });
 }
 
-function goToSlide(idx) {
-activeSlide = idx;
-dotsWrap.querySelectorAll(’.slider-dot’).forEach((d, i) => {
-d.classList.toggle(‘active’, i === idx);
-});
-// On mobile, shift the grid; on desktop just highlight the dot
-if (window.innerWidth < 768) {
-slider.style.transform = `translateX(calc(-${idx * 100}% - ${idx * 24}px))`;
+function goSlide(idx) {
+revIdx = (idx + revCards.length) % revCards.length;
+const cardW = revCards[0]?.offsetWidth + 24 || 364;
+revTrack.style.transform = `translateX(-${revIdx * cardW}px)`;
+revDots?.querySelectorAll(’.rdot’).forEach((d, i) => d.classList.toggle(‘active’, i === revIdx));
+resetAuto();
 }
+
+function resetAuto() {
+clearInterval(revAutoTimer);
+revAutoTimer = setInterval(() => goSlide(revIdx + 1), 4200);
+}
+
+if (revPrev) revPrev.addEventListener(‘click’, () => goSlide(revIdx - 1));
+if (revNext) revNext.addEventListener(‘click’, () => goSlide(revIdx + 1));
+
+// Touch/drag support
+let touchStartX = 0;
+if (revTrack) {
+revTrack.addEventListener(‘touchstart’, e => touchStartX = e.touches[0].clientX, { passive: true });
+revTrack.addEventListener(‘touchend’, e => {
+const dx = e.changedTouches[0].clientX - touchStartX;
+if (Math.abs(dx) > 40) goSlide(revIdx + (dx < 0 ? 1 : -1));
+});
 }
 
 buildDots();
+resetAuto();
 
-// Auto-advance
-setInterval(() => {
-const next = (activeSlide + 1) % cards.length;
-goToSlide(next);
-}, 4500);
-
-// ─── CONTACT FORM ────────────────────────────
-contactForm && contactForm.addEventListener(‘submit’, e => {
-e.preventDefault();
-showToast(‘🎉 Pesan terkirim! Kami akan membalas segera.’);
-contactForm.reset();
-});
-
-// ─── HERO PARALLAX (subtle) ──────────────────
-window.addEventListener(‘scroll’, () => {
-const y = window.scrollY;
-if (heroShoe) heroShoe.style.transform = `translateY(${y * 0.08}px) rotate(-6deg)`;
-}, { passive: true });
-
-// ─── COPY COUPON ─────────────────────────────
-document.querySelectorAll(‘strong’).forEach(el => {
-if (el.textContent.includes(‘HAIMAHADIANS20’)) {
-el.style.cursor = ‘pointer’;
-el.title = ‘Klik untuk menyalin kode’;
-el.addEventListener(‘click’, () => {
+/* ─── PROMO CODE COPY ───────────────────────── */
+const copyBtn = $(‘copyBtn’);
+if (copyBtn) {
+copyBtn.addEventListener(‘click’, () => {
 navigator.clipboard?.writeText(‘HAIMAHADIANS20’).then(() => {
-showToast(‘📋 Kode HAIMAHADIANS20 disalin!’);
+copyBtn.textContent = ‘✓ Disalin!’;
+setTimeout(() => copyBtn.textContent = ‘Salin Kode’, 2000);
+showToast(‘📋 Kode HAIMAHADIANS20 berhasil disalin!’);
 });
 });
 }
-});
 
-// ─── INIT ─────────────────────────────────────
-updateCartUI();
+/* ─── CONTACT FORM ──────────────────────────── */
+const contactForm = $(‘contactForm’);
+if (contactForm) {
+contactForm.addEventListener(‘submit’, e => {
+e.preventDefault();
+showToast(‘🎉 Pesan terkirim! Kami segera menghubungimu.’);
+contactForm.reset();
+});
+}
+
+/* ─── HERO SCROLL PARALLAX ──────────────────── */
+window.addEventListener(‘scroll’, () => {
+const y = window.scrollY;
+if (heroShoe && y < window.innerHeight) {
+heroShoe.style.transform = `translateY(${y * 0.07}px) rotate(-8deg)`;
+}
+}, { passive: true });
+
+/* ─── SMOOTH NAV ACTIVE STATE ───────────────── */
+const sections = $$(‘section[id]’);
+const navAs    = $$(’.nav-links a’);
+const sectObs  = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+navAs.forEach(a => {
+a.style.color = a.getAttribute(‘href’) === ‘#’ + entry.target.id
+? ‘var(–white)’ : ‘’;
+});
+}
+});
+}, { threshold: 0.4 });
+sections.forEach(s => sectObs.observe(s));
+
+/* ─── INIT ──────────────────────────────────── */
+updateCart();
