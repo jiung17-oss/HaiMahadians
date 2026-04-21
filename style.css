@@ -120,9 +120,8 @@ button { cursor: none; border: none; background: none; font-family: var(--font-b
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity .6s var(--ease), visibility .6s;
+  /* No CSS transition here — JS handles fade-out directly */
 }
-.preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
 .pre-inner { text-align: center; width: 260px; }
 .pre-logo {
   font-family: var(--font-h);
