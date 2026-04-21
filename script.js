@@ -31,6 +31,13 @@ bar.style.width = pct + '%';
 count.textContent = Math.floor(pct) + '%';
 }, 60);
 
+if (pct >= 100) {
+    pct = 100;
+    setTimeout(() => {
+        document.querySelector('.preloader-overlay').style.display = 'none';
+    }, 500); // Kasih jeda 0.5 detik biar halus
+}
+
 function finish() {
 setTimeout(() => {
 pre.classList.add('done');
