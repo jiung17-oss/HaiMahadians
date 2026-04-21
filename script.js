@@ -31,24 +31,31 @@ bar.style.width = pct + '%';
 count.textContent = Math.floor(pct) + '%';
 }, 60);
 
-if (pct >= 100) {
-    pct = 100;
-    setTimeout(() => {
-        document.querySelector('.preloader-overlay').style.display = 'none';
-    }, 500); // Kasih jeda 0.5 detik biar halus
+let pct = 0;
+const loader = document.querySelector('.pct-number'); // Pastikan class-nya sesuai di HTML
+
+function startLoading() {
+    let interval = setInterval(() => {
+        pct += 1; // Angka bertambah di sini
+        loader.innerText = pct + ' %';
+        
+        if (pct >= 100) {
+            clearInterval(interval);
+            finishLoading(); // Panggil fungsi buat nutup preloader
+        }
+    }, 30); // Kecepatan loading (30ms)
 }
 
-function finish() {
-setTimeout(() => {
-pre.classList.add('done');
-document.body.classList.remove('loading');
-// Trigger hero reveals after preloader
-document.querySelectorAll('.reveal-up').forEach((el, i) => {
-setTimeout(() => el.classList.add('in'), i * 80);
-});
-}, 400);
+window.addEventListener('load', startLoading);
+
+function finishLoading() {
+    const overlay = document.querySelector('.preloader-overlay'); 
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 500); // Biar ada efek fade out halus
 }
-})();
+
 
 /* ─── CUSTOM CURSOR ─────────────────────────── */
 const dot  = $('cursorDot');
