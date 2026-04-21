@@ -1,29 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Nike Landing Page</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NIKE AIR MAX — Hai Mahadians</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-    <div class="card" id="cardContainer">
-        <div class="content">
-            <h1>Nike Air Max</h1>
-            <p>Ikon gaya dengan kenyamanan maksimal sepanjang hari.</p>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        
-        <img src="https://images.clothes.com/sneakers/orange-shoe.png" id="shoeImage" alt="Nike Shoe">
+  <!-- ============ NAVBAR ============ -->
 
-        <div class="colors">
-            <span class="color-dot orange" onclick="changeColor('#ff6b00', 'https://images.clothes.com/sneakers/orange-shoe.png')"></span>
-            <span class="color-dot green" onclick="changeColor('#9acd32', 'https://images.clothes.com/sneakers/green-shoe.png')"></span>
-            <span class="color-dot purple" onclick="changeColor('#8a2be2', 'https://images.clothes.com/sneakers/purple-shoe.png')"></span>
-        </div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">HAI<span>MAHADIANS</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#products">Produk</a></li>
+      <li><a href="#features">Keunggulan</a></li>
+      <li><a href="#reviews">Review</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+
+  <section class="hero" id="hero">
+    <div class="hero-bg-text">AIR MAX</div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-label">NEW DROP 2025</p>
+        <h1 class="hero-title">NIKE<br/><span>AIR MAX</span><br/>720</h1>
+        <p class="hero-desc">Rasakan sensasi melangkah di udara. Teknologi Air-unit terbesar Nike pernah ada — memberikan cushioning dan gaya yang tak tertandingi.</p>
+
+```
+    <div class="color-picker">
+      <p class="picker-label">Pilih Warna:</p>
+      <div class="colors">
+        <button class="color-dot active" data-color="orange" style="background:#FF6B35" data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" aria-label="Orange"></button>
+        <button class="color-dot" data-color="black" style="background:#1a1a1a" data-img="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80" aria-label="Black"></button>
+        <button class="color-dot" data-color="white" style="background:#f0f0f0; border: 2px solid #555" data-img="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&q=80" aria-label="White"></button>
+        <button class="color-dot" data-color="blue" style="background:#3A7BF7" data-img="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=600&q=80" aria-label="Blue"></button>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="size-picker">
+      <p class="picker-label">Pilih Ukuran:</p>
+      <div class="sizes">
+        <button class="size-btn" data-size="38">38</button>
+        <button class="size-btn" data-size="39">39</button>
+        <button class="size-btn active" data-size="40">40</button>
+        <button class="size-btn" data-size="41">41</button>
+        <button class="size-btn" data-size="42">42</button>
+        <button class="size-btn" data-size="43">43</button>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <button class="btn-primary" id="heroAddCart" data-product="Nike Air Max 720" data-price="2499000">
+        Tambah ke Keranjang — Rp 2.499.000
+      </button>
+      <a href="#products" class="btn-secondary">Lihat Semua</a>
+    </div>
+  </div>
+
+  <div class="hero-image-wrap">
+    <div class="hero-glow"></div>
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=80" alt="Nike Air Max" class="hero-shoe" id="heroShoe"/>
+    <div class="hero-badge">
+      <span class="badge-num">720°</span>
+      <span class="badge-txt">Air Unit</span>
+    </div>
+  </div>
+</div>
+
+<div class="hero-stats">
+  <div class="stat">
+    <span class="stat-num">50K+</span>
+    <span class="stat-label">Pelanggan Puas</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">4.9★</span>
+    <span class="stat-label">Rating Rata-rata</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Produk Original</span>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ============ TICKER ============ -->
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>FREE ONGKIR SE-INDONESIA</span><span class="dot">✦</span>
+      <span>NIKE AIR MAX ORIGINAL</span><span class="dot">✦</span>
+      <span>GARANSI 30 HARI</span><span class="dot">✦</span>
+      <span>PRODUK TERBAIK 2025</span><span class="dot">✦</span>
+      <span>FREE ONGKIR SE-INDONESIA</span><span class="dot">✦</span>
+      <span>NIKE AIR MAX ORIGINAL</span><span class="dot">✦</span>
+      <span>GARANSI 30 HARI</span><span class="dot">✦</span>
+      <span>PRODUK TERBAIK 2025</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ============ PRODUCTS ============ -->
+
+  <section class="products" id="products">
+    <div class="section-header">
+      <p class="section-label">KOLEKSI</p>
+      <h2 class="section-title">Pilih Favoritmu</h2>
+    </div>
+    <div class="products-grid">
+
+```
+  <div class="product-card" data-reveal>
+    <div class="card-badge-new">BESTSELLER</div>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" alt="Nike Air Max 720"/>
+    </div>
+    <div class="card-info">
+      <div class="card-meta">
+        <span class="card-sub">Nike</span>
+        <div class="card-rating">★★★★★ <span>5.0</span></div>
+      </div>
+      <h3 class="card-name">Air Max 720</h3>
+      <p class="card-desc">Cushioning terbesar dengan tampilan futuristik.</p>
+      <div class="card-footer">
+        <span class="card-price">Rp 2.499.000</span>
+        <button class="card-add" data-product="Nike Air Max 720" data-price="2499000">+ Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-card" data-reveal>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&q=80" alt="Nike Air Max 90"/>
+    </div>
+    <div class="card-info">
+      <div class="card-meta">
+        <span class="card-sub">Nike</span>
+        <div class="card-rating">★★★★★ <span>4.9</span></div>
+      </div>
+      <h3 class="card-name">Air Max 90</h3>
+      <p class="card-desc">Klasik yang tak lekang oleh waktu sejak 1990.</p>
+      <div class="card-footer">
+        <span class="card-price">Rp 1.899.000</span>
+        <button class="card-add" data-product="Nike Air Max 90" data-price="1899000">+ Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-card" data-reveal>
+    <div class="card-badge-new">NEW</div>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80" alt="Nike Air Max 270"/>
+    </div>
+    <div class="card-info">
+      <div class="card-meta">
+        <span class="card-sub">Nike</span>
+        <div class="card-rating">★★★★☆ <span>4.8</span></div>
+      </div>
+      <h3 class="card-name">Air Max 270</h3>
+      <p class="card-desc">Desain lifestyle modern dengan heel Air terbesar.</p>
+      <div class="card-footer">
+        <span class="card-price">Rp 1.999.000</span>
+        <button class="card-add" data-product="Nike Air Max 270" data-price="1999000">+ Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-card" data-reveal>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=500&q=80" alt="Nike Air Max Plus"/>
+    </div>
+    <div class="card-info">
+      <div class="card-meta">
+        <span class="card-sub">Nike</span>
+        <div class="card-rating">★★★★★ <span>4.7</span></div>
+      </div>
+      <h3 class="card-name">Air Max Plus</h3>
+      <p class="card-desc">Agresif dan sporty, ikon jalanan yang tak tergoyahkan.</p>
+      <div class="card-footer">
+        <span class="card-price">Rp 2.199.000</span>
+        <button class="card-add" data-product="Nike Air Max Plus" data-price="2199000">+ Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="features-text" data-reveal>
+        <p class="section-label">KENAPA PILIH KAMI</p>
+        <h2 class="section-title">Dirancang untuk<br/>Yang Terbaik</h2>
+        <p class="features-desc">Setiap pasang Nike Air Max dibuat dengan teknologi terdepan, material premium, dan desain yang terinspirasi dari kultur streetwear global.</p>
+        <a href="#products" class="btn-primary">Belanja Sekarang</a>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item" data-reveal>
+          <div class="feature-icon">⚡</div>
+          <h4>Air Cushioning</h4>
+          <p>Teknologi Air-unit menyerap benturan & memberikan responsivitas luar biasa.</p>
+        </div>
+        <div class="feature-item" data-reveal>
+          <div class="feature-icon">🛡️</div>
+          <h4>100% Original</h4>
+          <p>Semua produk kami bergaransi keaslian dan berasal dari distributor resmi Nike.</p>
+        </div>
+        <div class="feature-item" data-reveal>
+          <div class="feature-icon">🚚</div>
+          <h4>Free Ongkir</h4>
+          <p>Gratis ongkos kirim ke seluruh wilayah Indonesia untuk setiap pembelian.</p>
+        </div>
+        <div class="feature-item" data-reveal>
+          <div class="feature-icon">↩️</div>
+          <h4>Garansi 30 Hari</h4>
+          <p>Tidak puas? Kembalikan dalam 30 hari, kami jamin pengembalian dana penuh.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+
+  <section class="reviews" id="reviews">
+    <div class="section-header">
+      <p class="section-label">TESTIMONI</p>
+      <h2 class="section-title">Kata Mereka</h2>
+    </div>
+    <div class="reviews-slider" id="reviewsSlider">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sepatu paling nyaman yang pernah aku pakai! Cushioning-nya beda banget sama merk lain. Udah jalan seharian tetep enak di kaki."</p>
+        <div class="reviewer">
+          <img src="https://i.pravatar.cc/50?img=1" alt="Reviewer"/>
+          <div>
+            <strong>Rizky A.</strong>
+            <span>Jakarta • Air Max 720</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Pengiriman super cepat, packing aman, dan barangnya 100% original. Aku udah beli 3 kali di sini dan selalu puas!"</p>
+        <div class="reviewer">
+          <img src="https://i.pravatar.cc/50?img=5" alt="Reviewer"/>
+          <div>
+            <strong>Dewi S.</strong>
+            <span>Surabaya • Air Max 90</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Desainnya keren banget, cocok buat daily wear maupun ke gym. Banyak yang nanya belinya dimana hahaha. Recommended banget!"</p>
+        <div class="reviewer">
+          <img src="https://i.pravatar.cc/50?img=8" alt="Reviewer"/>
+          <div>
+            <strong>Bima P.</strong>
+            <span>Bandung • Air Max Plus</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Harga sesuai kualitas. Materialnya premium, jahitannya rapi. Sepatunya bikin outfit makin on point. Pasti balik lagi beli yang lain."</p>
+        <div class="reviewer">
+          <img src="https://i.pravatar.cc/50?img=12" alt="Reviewer"/>
+          <div>
+            <strong>Tika R.</strong>
+            <span>Medan • Air Max 270</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </section>
+
+  <!-- ============ CTA BANNER ============ -->
+
+  <section class="cta-banner">
+    <div class="cta-content" data-reveal>
+      <p class="section-label">PENAWARAN TERBATAS</p>
+      <h2>Dapatkan Diskon <span>20%</span><br/>untuk Pembelian Pertamamu</h2>
+      <p>Gunakan kode <strong>HAIMAHADIANS20</strong> saat checkout</p>
+      <a href="#products" class="btn-white">Belanja Sekarang</a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+
+  <section class="contact" id="contact">
+    <div class="section-header">
+      <p class="section-label">HUBUNGI KAMI</p>
+      <h2 class="section-title">Ada Pertanyaan?</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info" data-reveal>
+        <div class="contact-item">
+          <span class="ci-icon">📍</span>
+          <div>
+            <strong>Alamat</strong>
+            <p>Jl. Hai Mahadians No. 17, Jakarta Selatan</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📱</span>
+          <div>
+            <strong>WhatsApp</strong>
+            <p>+62 812-3456-7890</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📧</span>
+          <div>
+            <strong>Email</strong>
+            <p>halo@haimahadians.id</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">🕐</span>
+          <div>
+            <strong>Jam Layanan</strong>
+            <p>Senin–Sabtu, 08.00–20.00 WIB</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" data-reveal id="contactForm">
+        <div class="form-group">
+          <label>Nama</label>
+          <input type="text" placeholder="Nama kamu" required/>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="email@kamu.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Pesan</label>
+          <textarea placeholder="Ada yang bisa kami bantu?" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary full-w">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">HAI<span>MAHADIANS</span></div>
+        <p>Toko reseller Nike terpercaya dengan ribuan pelanggan puas di seluruh Indonesia.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+          <a href="#" aria-label="Shopee">🛍️</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="fl-col">
+          <h5>Produk</h5>
+          <a href="#">Air Max 720</a>
+          <a href="#">Air Max 90</a>
+          <a href="#">Air Max 270</a>
+          <a href="#">Air Max Plus</a>
+        </div>
+        <div class="fl-col">
+          <h5>Informasi</h5>
+          <a href="#">Tentang Kami</a>
+          <a href="#">Cara Pemesanan</a>
+          <a href="#">Pengiriman</a>
+          <a href="#">Retur & Garansi</a>
+        </div>
+        <div class="fl-col">
+          <h5>Ikuti Kami</h5>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">Shopee</a>
+          <a href="#">Tokopedia</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Hai Mahadians. Dibuat dengan ❤️ untuk para sneakerheads Indonesia.</p>
+    </div>
+  </footer>
+
+  <!-- ============ CART SIDEBAR ============ -->
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Keranjang Kamu</h3>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <span>🛒</span>
+        <p>Keranjangmu masih kosong</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">Rp 0</span>
+      </div>
+      <button class="btn-primary full-w" id="checkoutBtn">Checkout Sekarang</button>
+    </div>
+  </aside>
+
+  <!-- ============ TOAST ============ -->
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
